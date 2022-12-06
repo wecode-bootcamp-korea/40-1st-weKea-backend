@@ -4,7 +4,7 @@ CREATE TABLE products (
     name VARCHAR(50),
     price DECIMAL(10, 2),
     product_code VARCHAR(50),
-    thumbnail_url VARCHAR(50), 
+    thumbnail_url VARCHAR(1000), 
     example_image_url VARCHAR(1000),
     rating int, 
     description text, 

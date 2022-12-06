@@ -103,7 +103,7 @@ app.post("/signIn", async (req, res) => {
   const result = await checkHash(password, hashedPassword);
 
   if (result) {
-    const payLoad = { exp: 432000 };
+    const payLoad = { exp: Math.floor(Date.now() / 1000) + 60 * 60 * 12 * 3 };
     const secretKey = process.env.SECRETE_KEY;
     const jwtToken = jwt.sign(payLoad, secretKey);
     console.log(jwtToken);
