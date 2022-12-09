@@ -12,21 +12,21 @@ const signUp = async (
   email,
   password
 ) => {
-  try {
-    await userDao.getUserByEmail(email);
-    const hashedPassword = await bcrypt.hash(password, 10);
-    await userDao.createUser(
-      name,
-      birthdate,
-      phoneNumber,
-      gender,
-      address,
-      email,
-      hashedPassword
-    );
-  } catch (err) {
-    res.status(err.statusCode || 400).json({ message: err.message });
+  const user = await userDao.getUserByEmail(email);
+
+  if (user !== undefined) {
+    throw new Error("EMAIL_ALREADY_TAKEN");
   }
+  const hashedPassword = await bcrypt.hash(password, 10);
+  await userDao.createUser(
+    name,
+    birthdate,
+    phoneNumber,
+    gender,
+    address,
+    email,
+    hashedPassword
+  );
 };
 
 const signIn = async (email, password) => {
