@@ -39,11 +39,12 @@ const signIn = async (email, password) => {
     throw new Error("INVALID_USER");
   }
   const payLoad = {
-    exp: Math.floor(Date.now() / 1000) + 60 * 60 * 12 * 3,
     id: user.id,
   };
   const SECRETE_KEY = process.env.SECRETE_KEY;
-  const jwtToken = jwt.sign(payLoad, SECRETE_KEY);
+  const jwtToken = jwt.sign(payLoad, SECRETE_KEY, {
+    expiresIn: process.env.EXPIRES_IN,
+  });
   console.log(jwtToken);
   return jwtToken;
 };
