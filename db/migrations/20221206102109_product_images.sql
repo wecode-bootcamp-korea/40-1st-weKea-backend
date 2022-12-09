@@ -1,8 +1,8 @@
 -- migrate:up
 CREATE TABLE product_images (
     id INT NOT NULL AUTO_INCREMENT,
-		image_url VARCHAR(1000),
-    product_id int,
+		image_url VARCHAR(1000) NOT NULL,
+    product_id int NOT NULL,
 		PRIMARY KEY(id),
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
