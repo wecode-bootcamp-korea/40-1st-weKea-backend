@@ -1,11 +1,11 @@
 const authService = require("../services/auth.service");
 
 const signUp = async (req, res) => {
-  const { name, dateOfBirth, phoneNumber, gender, address, email, password } =
+  const { name, birthdate, phoneNumber, gender, address, email, password } =
     req.body;
   await authService.signUp(
     name,
-    dateOfBirth,
+    birthdate,
     phoneNumber,
     gender,
     address,

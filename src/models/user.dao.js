@@ -2,7 +2,7 @@ const { appDataSource } = require("./data-source");
 
 const createUser = async (
   name,
-  dateOfBirth,
+  birthdate,
   phoneNumber,
   gender,
   address,
@@ -21,7 +21,7 @@ const createUser = async (
       password
     ) VALUES (?,?,?,?,?,?,?)
     `,
-    [name, dateOfBirth, phoneNumber, gender, address, email, password]
+    [name, birthdate, phoneNumber, gender, address, email, password]
   );
 };
 
