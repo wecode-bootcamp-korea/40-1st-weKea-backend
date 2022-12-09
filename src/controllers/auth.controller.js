@@ -13,7 +13,7 @@ const signUp = async (req, res) => {
       email,
       password
     );
-    res.status(201).end();
+    res.status(201).json({ message: "success" });
   } catch (err) {
     res.status(err.statusCode || 400).json({ message: err.message });
   }
