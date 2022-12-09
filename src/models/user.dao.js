@@ -13,7 +13,7 @@ const createUser = async (
     `
     INSERT INTO users (
       name,
-      date_of_birth,
+      birth_date,
       phone_number,
       gender,
       address,
