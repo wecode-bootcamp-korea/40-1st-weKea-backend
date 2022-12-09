@@ -42,8 +42,8 @@ const signIn = async (email, password) => {
     exp: Math.floor(Date.now() / 1000) + 60 * 60 * 12 * 3,
     id: user.id,
   };
-  const secretKey = process.env.SECRETE_KEY;
-  const jwtToken = jwt.sign(payLoad, secretKey);
+  const SECRETE_KEY = process.env.SECRETE_KEY;
+  const jwtToken = jwt.sign(payLoad, SECRETE_KEY);
   console.log(jwtToken);
   return jwtToken;
 };
