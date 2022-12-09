@@ -13,7 +13,7 @@ const signUp = async (
   password
 ) => {
   const user = await userDao.getUserByEmail(email);
-  if (user === undefined) {
+  if (!user) {
     const hashedPassword = await bcrypt.hash(password, 10);
     await userDao.createUser(
       name,
