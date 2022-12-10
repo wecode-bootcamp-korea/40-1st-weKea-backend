@@ -34,7 +34,7 @@ const signIn = async (email, password) => {
   if (!user) {
     throw new Error("NONEXISTENT_USER");
   }
-  const isMatch = await bcrypt.compare(password, user.password);
+  const isMatch = await bcrypt.compare(password, user.password.toString());
   if (!isMatch) {
     throw new Error("INVALID_USER");
   }
