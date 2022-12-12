@@ -14,8 +14,8 @@ const signUp = async (
 ) => {
   const user = await userDao.getUserByEmail(email);
 
-  if (user !== undefined) {
-    throw new Error("EMAIL_ALREADY_TAKEN");
+  if (user) {
+    throw new Error("USER_ALREADY_EXIST");
   }
   const hashedPassword = await bcrypt.hash(password, 10);
   await userDao.createUser(
