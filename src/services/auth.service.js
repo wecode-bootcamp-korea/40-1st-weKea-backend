@@ -45,7 +45,6 @@ const signIn = async (email, password) => {
   const jwtToken = jwt.sign(payLoad, SECRETE_KEY, {
     expiresIn: process.env.EXPIRES_IN,
   });
-  console.log(jwtToken);
   return jwtToken;
 };
 
