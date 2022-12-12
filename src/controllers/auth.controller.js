@@ -4,16 +4,31 @@ const signUp = async (req, res) => {
   try {
     const { name, birthdate, phoneNumber, gender, address, email, password } =
       req.body;
-    await authService.signUp(
+
+    const userInformation = [
       name,
       birthdate,
       phoneNumber,
       gender,
       address,
       email,
-      password
-    );
-    res.status(201).json({ message: "success" });
+      password,
+    ];
+
+    if (userInformation.includes(undefined)) {
+      throw new Error("USER_INFORMATION_MISSING");
+    } else {
+      await authService.signUp(
+        name,
+        birthdate,
+        phoneNumber,
+        gender,
+        address,
+        email,
+        password
+      );
+      res.status(201).json({ message: "success" });
+    }
   } catch (err) {
     res.status(err.statusCode || 400).json({ message: err.message });
   }
