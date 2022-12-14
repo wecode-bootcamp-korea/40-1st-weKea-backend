@@ -8,7 +8,7 @@ const getProductList = async(req, res) => {
     if(!categoryName){
         throw new Error("Invalid Key.")
     }
-    const result = await getListService.getProductList (categoryName);
+    const result = await getListService.getProductList (categoryName)
       return res.status(200).json({ message : result }) 
   } catch(err) {
       return res.status(err.statusCode || 400).json({ message : err.message})
