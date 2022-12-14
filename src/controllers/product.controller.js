@@ -1,7 +1,7 @@
 const productService  = require('../services/product.service')
 
 const getProductList = async(req, res) => {
-  try{
+  try {
     const categoryId = req.params.categoryId;
 
     if(!categoryId){
@@ -10,12 +10,12 @@ const getProductList = async(req, res) => {
     const result = await productService.getProductList(categoryId)
     return res.status(200).json({ productInfo : result }) 
   } catch(err) {
-      return res.status(err.statusCode || 400).json({ message : err.message})
+      return res.status(err.statusCode || 400).json({ message : err.message })
   }
 };
 
 const getProductDetail = async(req, res) => {
-  try{
+  try {
     const productId = req.params.productId;
       
     if(!productId) {
@@ -25,7 +25,7 @@ const getProductDetail = async(req, res) => {
       const result = await productService.getProductDetail(productId)
       return res.status(200).json({ productDetails : result })
   } catch(err) {
-        res.status(err.statusCode || 400).json({ message : err.message});
+        res.status(err.statusCode || 400).json({ message : err.message });
   }
 }
 

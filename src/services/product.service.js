@@ -7,7 +7,7 @@ const getProductList = async (categoryId) => {
 
 const getProductDetail = async(productId) => {
   return await productDao.getProductDetail(productId)
-};
+}
 
 module.exports = {
   getProductList,
