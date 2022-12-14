@@ -1,22 +1,43 @@
 const { appDataSource } = require('./data-source');
 
-//Get Product list by categories
-const getProductList = async (categoryName) => {
-  return await appDatasource.query(
+const getProductList = async (categoryId) => {
+  return await appDataSource.query(
     `
     SELECT
+      p.id,
       p.name,
       p.price,
-      p.description,
       p.rating,
       p.thumbnailUrl,
-      p.exampleImageUrl
-      c.name as categoryName
+      p.exampleImageUrl,
+      c.name
     FROM products p
-    INNER JOIN categories On c.id = p.categoryId
+    INNER JOIN categories c ON c.id = p.categoryId
     WHERE p.categoryId = ?
     `,
-    [categoryName]
+    [categoryId]
   )};
 
-  module.exports = { getProductList };
+const getProductDetail = async (productId) => {
+  return await appDataSource.query(
+    `
+    SELECT
+      p.id,
+      p.name,
+      p.price,
+      p.productCode,
+      p.description,
+      p.rating,
+      pi.imageUrl
+    FROM products p
+    JOIN product_images pi ON pi.productId = p.id
+    WHERE p.id = ?
+    `,
+    [productId]
+  )
+}
+
+  module.exports = {
+    getProductList,
+    getProductDetail
+  };

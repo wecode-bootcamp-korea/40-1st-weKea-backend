@@ -4,7 +4,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 const { appDataSource } = require("./src/models/data-source");
-const { routes } = require("./src/routes");
+const routes = require("./src/routes");
 
 appDataSource
   .initialize()
