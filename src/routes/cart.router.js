@@ -3,20 +3,16 @@ const cartController = require("../controllers/cart.controller");
 const loginRequired = require("../utils/loginRequired");
 const cartRouter = express.Router();
 
-cartRouter.post("/putItem", loginRequired.verifyUser, cartController.putItem);
+cartRouter.post("/insertion", loginRequired.verifyUser, cartController.putItem);
 
-cartRouter.patch(
-  "/editItem",
-  loginRequired.verifyUser,
-  cartController.editItem
-);
+cartRouter.patch("/edition", loginRequired.verifyUser, cartController.editItem);
 
 cartRouter.delete(
-  "/deleteItem",
+  "/deletion",
   loginRequired.verifyUser,
   cartController.deleteItem
 );
 
-cartRouter.get("/getItem", loginRequired.verifyUser, cartController.getItem);
+cartRouter.get("/retrieval", loginRequired.verifyUser, cartController.getItem);
 
 module.exports = { cartRouter };
