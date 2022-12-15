@@ -1,6 +1,6 @@
 const cartDao = require("../models/cart.dao");
 
-const putItem = async (userId, productId) => {
+const createCart = async (userId, productId) => {
   const checkCart = await cartDao.checkItemInTheCart(userId, productId);
   if (checkCart[0] === undefined) {
     console.log("New item!");
@@ -11,16 +11,16 @@ const putItem = async (userId, productId) => {
   }
 };
 
-const editItem = async (userId, productId, quantity) => {
+const editCart = async (userId, productId, quantity) => {
   await cartDao.editNumberOfItem(userId, productId, quantity);
 };
 
-const deleteItem = async (userId, productId) => {
+const deleteCart = async (userId, productId) => {
   return await cartDao.deleteItemFromTheCart(userId, productId);
 };
 
-const getItem = async (userId) => {
+const getCart = async (userId) => {
   return await cartDao.getAllItemSelectedByTheUser(userId);
 };
 
-module.exports = { putItem, editItem, deleteItem, getItem };
+module.exports = { createCart, editCart, deleteCart, getCart };
