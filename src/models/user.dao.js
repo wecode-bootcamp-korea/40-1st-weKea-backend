@@ -22,7 +22,7 @@ const createUser = async (
     ) VALUES (?,?,?,?,?,?,?)
     `,
     [name, birthdate, phoneNumber, gender, address, email, password]
-  );
+  )
 };
 
 const getUserByEmail = async (email) => {
@@ -38,7 +38,10 @@ const getUserByEmail = async (email) => {
   `,
     [email]
   );
-  return user;
+  return user
 };
 
-module.exports = { createUser, getUserByEmail };
+module.exports = { 
+  createUser, 
+  getUserByEmail 
+};

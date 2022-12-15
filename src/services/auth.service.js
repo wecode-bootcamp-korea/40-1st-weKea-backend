@@ -26,7 +26,7 @@ const signUp = async (
     address,
     email,
     hashedPassword
-  );
+  )
 };
 
 const signIn = async (email, password) => {
@@ -40,12 +40,15 @@ const signIn = async (email, password) => {
   }
   const payLoad = {
     id: user.id,
-  };
+  }
   const SECRETE_KEY = process.env.SECRETE_KEY;
   const jwtToken = jwt.sign(payLoad, SECRETE_KEY, {
     expiresIn: process.env.EXPIRES_IN,
-  });
-  return jwtToken;
+  })
+  return jwtToken
 };
 
-module.exports = { signUp, signIn };
+module.exports = { 
+  signUp,
+  signIn
+};
