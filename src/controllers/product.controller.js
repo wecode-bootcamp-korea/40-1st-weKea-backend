@@ -2,17 +2,19 @@ const productService  = require('../services/product.service')
 
 const getProductList = async(req, res) => {
   try {
-    const categoryId = req.params.categoryId;
-
-    if(!categoryId){
-        throw new Error("Invalid Key.")
+    const categoryId = req.params.categoryId
+    const filterBy = req.query.filterBy;
+    const method = req.query.method;
+    const product = await productService.getProductList(
+      categoryId,
+      filterBy,
+      method
+    );
+    res.status(200).json(product);
+    } catch (err) {
+      res.status(err.statusCode || 400).json({ message: err.message });
     }
-    const result = await productService.getProductList(categoryId)
-    return res.status(200).json({ productInfo : result }) 
-  } catch(err) {
-      return res.status(err.statusCode || 400).json({ message : err.message })
-  }
-};
+}
 
 const getProductDetail = async(req, res) => {
   try {
@@ -22,10 +24,10 @@ const getProductDetail = async(req, res) => {
         throw new Error("Not Found.")
       }
 
-      const result = await productService.getProductDetail(productId)
-      return res.status(200).json({ productDetails : result })
+    const result = await productService.getProductDetail(productId)
+    return res.status(200).json(result)
   } catch(err) {
-        res.status(err.statusCode || 400).json({ message : err.message });
+      res.status(err.statusCode || 400).json({ message : err.message });
   }
 }
 
