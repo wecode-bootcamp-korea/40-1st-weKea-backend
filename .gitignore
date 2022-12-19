@@ -1,18 +1,4 @@
-wekea_product_data.csv
-
-transfer_gaeun.js
-
-transfer.js
-
-transfer_data.js
-
-transfer_final.js
-
-data_folder/
-
 db/schema.sql
-
-db/migrations/20221210123111_newProduct.sql
 
 # Created by https://www.toptal.com/developers/gitignore/api/vim,macos,node,linux,visualstudiocode,dotenv,webstorm,windows,zsh
 # Edit at https://www.toptal.com/developers/gitignore?templates=vim,macos,node,linux,visualstudiocode,dotenv,webstorm,windows,zsh
