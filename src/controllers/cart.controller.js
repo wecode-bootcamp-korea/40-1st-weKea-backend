@@ -5,7 +5,7 @@ const createCart = async (req, res) => {
     const { productId } = req.body;
     const userId = req.decodedJwtPayload.id;
     await cartService.createCart(userId, productId);
-    res.status(201).json({ message: "Item has been put into the cart!" });
+    res.status(200).json({ message: "Item has been put into the cart!" });
   } catch (err) {
     res.status(err.statusCode || 400).json({ message: err.message });
   }
@@ -16,7 +16,7 @@ const editCart = async (req, res) => {
     const { productId, quantity } = req.body;
     const userId = req.decodedJwtPayload.id;
     await cartService.editCart(userId, productId, quantity);
-    res.status(201).json({ message: "Number of item has been edited!" });
+    res.status(200).json({ message: "Number of item has been edited!" });
   } catch (err) {
     res.status(err.statusCode || 400).json({ message: err.message });
   }
@@ -27,7 +27,7 @@ const deleteCart = async (req, res) => {
     const { productId } = req.body;
     const userId = req.decodedJwtPayload.id;
     await cartService.deleteCart(userId, productId);
-    res.status(201).json({ message: "Item has been deleted from the cart!" });
+    res.status(200).json({ message: "Item has been deleted from the cart!" });
   } catch (err) {
     res.status(err.statusCode || 400).json({ message: err.message });
   }
@@ -37,7 +37,7 @@ const getCart = async (req, res) => {
   try {
     const userId = req.decodedJwtPayload.id;
     const products = await cartService.getCart(userId);
-    res.status(201).send(products);
+    res.status(200).send(products);
   } catch (err) {
     res.status(err.statusCode || 400).json({ message: err.message });
   }
