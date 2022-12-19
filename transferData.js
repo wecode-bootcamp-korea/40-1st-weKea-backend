@@ -1,3 +1,4 @@
+require("dotenv").config();
 const csv = require("csvtojson");
 
 const { appDataSource } = require("./src/models/data-source");
