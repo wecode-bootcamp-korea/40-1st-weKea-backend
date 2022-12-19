@@ -8,7 +8,7 @@ const verifyUser = async (req, res, next) => {
       process.env.SECRETE_KEY,
       (err, decoded_payload) => {
         if (decoded_payload != undefined) {
-          res.locals.payload = decoded_payload;
+          req.decodedJwtPayload = decoded_payload;
         }
       }
     );

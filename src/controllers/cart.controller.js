@@ -3,7 +3,7 @@ const cartService = require("../services/cart.service");
 const createCart = async (req, res) => {
   try {
     const { productId } = req.body;
-    const userId = res.locals.payload.id;
+    const userId = req.decodedJwtPayload;
     await cartService.createCart(userId, productId);
     res.status(201).json({ message: "Item has been put into the cart!" });
   } catch (err) {
@@ -14,7 +14,7 @@ const createCart = async (req, res) => {
 const editCart = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
-    const userId = res.locals.payload.id;
+    const userId = req.decodedJwtPayload;
     await cartService.editCart(userId, productId, quantity);
     res.status(201).json({ message: "Number of item has been edited!" });
   } catch (err) {
@@ -25,7 +25,7 @@ const editCart = async (req, res) => {
 const deleteCart = async (req, res) => {
   try {
     const { productId } = req.body;
-    const userId = res.locals.payload.id;
+    const userId = req.decodedJwtPayload;
     await cartService.deleteCart(userId, productId);
     res.status(201).json({ message: "Item has been deleted from the cart!" });
   } catch (err) {
@@ -35,7 +35,7 @@ const deleteCart = async (req, res) => {
 
 const getCart = async (req, res) => {
   try {
-    const userId = res.locals.payload.id;
+    const userId = req.decodedJwtPayload;
     const products = await cartService.getCart(userId);
     console.log(products);
     res.status(201).send(products);
