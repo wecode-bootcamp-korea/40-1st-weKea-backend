@@ -3,10 +3,8 @@ const cartDao = require("../models/cart.dao");
 const createCart = async (userId, productId) => {
   const checkCart = await cartDao.checkItemInTheCart(userId, productId);
   if (checkCart[0] === undefined) {
-    console.log("New item!");
     await cartDao.putItemIntoCart(userId, productId);
   } else {
-    console.log("Item exits. Adding one more!");
     await cartDao.addOneMore(userId, productId);
   }
 };
