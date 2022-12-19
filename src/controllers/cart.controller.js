@@ -37,7 +37,6 @@ const getCart = async (req, res) => {
   try {
     const userId = req.decodedJwtPayload;
     const products = await cartService.getCart(userId);
-    console.log(products);
     res.status(201).send(products);
   } catch (err) {
     res.status(err.statusCode || 400).json({ message: err.message });
