@@ -3,10 +3,14 @@ const productService = require("../services/product.service");
 const getProductList = async (req, res) => {
   try {
     const categoryId = req.params.categoryId;
+    const page = req.query.page;
+    const limit = req.query.limit;
     const filterBy = req.query.filterBy;
     const method = req.query.method;
     const product = await productService.getProductList(
       categoryId,
+      page,
+      limit,
       filterBy,
       method
     );

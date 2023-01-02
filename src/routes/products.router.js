@@ -1,4 +1,5 @@
 const express = require("express");
+const { classify } = require("../utils/classifySearched");
 
 const productController = require("../controllers/product.controller");
 const productRouter = express.Router();
