@@ -1,6 +1,7 @@
 const { appDataSource } = require("./data-source");
 
-const getProductList = async (categoryId, filterBy, method) => {
+const getProductList = async (categoryId, page, limit, filterBy, method) => {
+  const _limit = page * limit;
   if (!filterBy && !method) {
     const product = await appDataSource.manager.query(
       `
@@ -13,7 +14,8 @@ const getProductList = async (categoryId, filterBy, method) => {
       thumbnailUrl,
       exampleImageUrl
     FROM products 
-    WHERE categoryId = ?;
+    WHERE categoryId = ?
+    LIMIT ${_limit};
     `,
       [categoryId]
     );
@@ -31,14 +33,14 @@ const getProductList = async (categoryId, filterBy, method) => {
       exampleImageUrl
     FROM products
     WHERE categoryId = ?
-    ORDER BY ${filterBy} ${method};
+    ORDER BY ${filterBy} ${method}
+    LIMIT ${_limit};
     `,
       [categoryId]
     );
     return product;
   }
 };
-
 const getProductDetail = async (productId) => {
   return await appDataSource.query(
     `
